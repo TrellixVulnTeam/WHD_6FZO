@@ -5,7 +5,6 @@ from kivy.uix.screenmanager import Screen, ScreenManager,SwapTransition
 from kivy.config import Config
 import engine
 import datetime 
-import threading, run_simulation
 
 Config.set('graphics', 'resizable', '0')
 kvdir=path.join('Kv')
@@ -37,9 +36,6 @@ class registro(Screen):
             self.sexo.text=''
             self.altura.text=''
             self.peso.text=''
-            t1 = threading.Thread(target=run_simulation.main)
-            t1.start()
-            t1.join()
         else:
             self.parent.current='inicio'
             self.mes.text=''
@@ -58,11 +54,12 @@ class update(Screen):
         nombre=self.nombre.text.upper()
         knee=self.knee.text
         if masa!=' ' and wrist!=' ' and nombre!=' ' and knee!=' ':
-            knee=float(knee)/100
-            wrist=float(wrist)/100
+            
             info=engine.get_data([nombre])
             fdn=info[1].split("-")
             if info[2]=="M":
+                knee=float(knee)/100
+                wrist=float(wrist)/100
                 MR=float(masa)*.241
                 MO=3.02* pow( (
                     pow((float(info[3])/100),2) 
@@ -117,6 +114,8 @@ class monitoreo(Screen):
             self.monito.text=data
         else:
             self.parent.current='inicio'
+            self.nombre.text=''
+            self.monito.text=''
 
 
 manager = ScreenManager(transition=SwapTransition())
