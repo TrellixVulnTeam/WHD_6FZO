@@ -1,0 +1,297 @@
+<inicio>:
+	canvas:
+		Rectangle:
+			pos:self.pos
+			size: self.size
+			source: "img/fondo.jpg"
+    Button:
+        id:inicio
+        on_press:root.ir()
+        text:"Sing up"
+        background_color:.49,1.56,.01,1
+        size_hint: None, None
+        pos: 270,430
+        size:200,100
+    
+    Button:
+        id:Info
+        on_press:root.info()
+        text:"Update Informacion"
+        background_color:.53,1.77,1.55,1
+        size_hint: None, None
+        pos: 270,255
+        size:200,100
+    Button:
+        id:monitoreo
+        on_press:root.moni()
+        text:"Weekly Data"
+        background_color:1.23,1.60,2.55,1
+        size_hint:None,None
+        pos:270,70
+        size:200,100
+
+<registro>:
+    mes:mes
+    nombre:nombre
+    dia:dia
+    year:year
+    altura:altura
+    sexo:sexo
+    peso:peso
+	canvas:
+		Rectangle:
+			pos:self.pos
+			size: self.size
+			source: "img/fondo.jpg"
+    Label:
+        text:"Name :"
+        font_size:30
+        size_hint:None,None
+        pos:50,480
+    TextInput:
+        id:nombre
+        size_hint:None,None
+        multiline:False
+        font_size:20
+        pos:150,510
+        size:560,35
+        valign: "middle"
+        halign: "center"
+        focus: True
+    Label:
+        text:"Date of birth :"
+        font_size:30
+        size_hint:None, None
+        pos:489,419
+    TextInput:
+        id:mes
+        hint_text: 'MM'
+        input_filter:"int"
+        multiline: False
+        font_size:30
+        valign: "middle"
+        halign: "center"
+        size_hint:None,None
+        pos:435,399
+        size:60,50
+    TextInput:
+        id:dia
+        hint_text: 'DD'
+        input_filter:"int"
+        multiline: False
+        valign: "middle"
+        halign: "center"
+        font_size:30
+        size_hint:None,None
+        pos:500,399
+        size:60,50
+    TextInput:
+        id:year
+        hint_text: 'YYYY'
+        input_filter:"int"
+        multiline: False
+        valign: "middle"
+        halign: "center"
+        font_size:30
+        size_hint:None,None
+        pos:565,399
+        size:80,50 
+    Label:
+        text:"Sex :"
+        font_size:30
+        size_hint:None,None
+        pos:170,419
+    TextInput:
+        id:sexo
+        hint_text: 'M/W'
+        size_hint:None,None
+        multiline: False
+        valign: "middle"
+        halign: "center"
+        font_size:30
+        pos:160,399
+        size:120,50
+    Label:
+        text:"Weight :"
+        font_size:30
+        size_hint:None,None
+        pos:240,248    
+    TextInput:
+        id:peso
+        valign: "middle"
+        halign: "center"
+        hint_text: 'KG'
+        input_filter:"int"
+        multiline: False
+        font_size:30
+        size_hint:None,None
+        pos:360,270
+        size:100,50
+    Label:
+        text:"Height :"
+        font_size:30
+        size_hint:None,None
+        pos:240,120
+    TextInput:
+        id:altura
+        valign: "middle"
+        halign: "center"
+        input_filter:"int"
+        multiline: False
+        font_size:30
+        hint_text: 'CM'
+        size_hint:None,None
+        pos:360,144
+        size:100,50
+    Label:
+        text:"Kg"
+        font_size:30
+        size_hint:None,None
+        pos:440,248
+    Label:
+        text:"Cm"
+        font_size:30
+        size_hint:None,None
+        pos:440,120
+    Button:    
+        id:guardar
+        on_press: root.salvar()
+        text:"Save"
+        background_color:2.55,.84,.6,1
+        size_hint: None, None
+        pos: 300,30
+        size:150,60
+
+<update>:
+	canvas:
+		Rectangle:
+			pos:self.pos
+			size: self.size
+			source: "img/fondo.jpg"
+    masa:masa
+    wrist:wrist
+    nombre:nombre
+    knee:knee
+    Label:
+        text:"Name :"
+        font_size:30
+        size_hint:None,None
+        pos:50,480
+    TextInput:
+        id:nombre
+        size_hint:None,None
+        multiline:False
+        font_size:20
+        pos:150,510
+        size:560,35
+        valign: "middle"
+        halign: "center"
+        focus: True
+    Label:
+        text:"Weight :"
+        font_size:40
+        pos:10,170
+    TextInput:
+        id:masa
+        valign: "middle"
+        halign: "center"
+        input_filter:"int"
+        multiline: False
+        font_size:40
+        size_hint:None,None
+        pos:360,350
+        size:90,60
+        hint_text: 'Kg'
+
+    Label:
+        text:"wrist value :"
+        font_size:40
+        pos:200,250
+        size_hint:None,None
+
+    TextInput:
+        id:wrist
+        valign: "middle"
+        halign: "center"
+        input_filter:"int"
+        multiline: False
+        hint_text: 'cm'
+        font_size:40
+        size_hint:None,None
+        pos:200,190
+        size:90,60
+    
+    Label:
+        text:"knee value :"
+        font_size:40
+        pos:500,250
+        size_hint:None,None
+
+    TextInput:
+        id:knee
+        valign: "middle"
+        halign: "center"
+        hint_text: 'cm'
+        input_filter:"int"
+        multiline: False
+        font_size:40
+        size_hint:None,None
+        pos:500,190
+        size:90,60
+
+    Button:
+        text:"Save"
+        on_press:root.actualiza()
+        background_color:2.55,.84,.6,1
+        size_hint: None, None
+        pos: 330,30
+        size:150,60
+
+<monitoreo>
+    nombre:nombre
+    monito:monito
+	canvas:
+		Rectangle:
+			pos:self.pos
+			size: self.size
+			source: "img/fondo.jpg"
+    Label:
+        text:"Name :"
+        font_size:30
+        size_hint:None,None
+        pos:50,480
+    TextInput:
+        id:nombre
+        size_hint:None,None
+        multiline:False
+        font_size:20
+        pos:150,510
+        size:560,35
+        valign: "middle"
+        halign: "center"
+        focus: True
+    Label:
+        text:"Monitoring :"
+        font_size:30
+        pos:355,300
+        size_hint:None,None
+    TextInput:
+        id:monito
+        font_size:20
+        size_hint:None,None
+        pos:150,130
+        size:480,200
+    Button:
+        text:"My data"
+        on_press:root.my_data()
+        background_color:2.55,.84,.6,1
+        size_hint: None, None
+        pos: 330,400
+        size:150,60
+    Button:
+        text:"Back"
+        on_press:root.atras()
+        background_color:2.55,.84,.6,1
+        size_hint: None, None
+        pos: 330,30
+        size:150,60
