@@ -82,12 +82,11 @@ def data(nombre):
     datai=[nombre,0]
     data=databse(datai)
     daily,week= data.data_all()
-    print(daily,week)
-    # calidad =load_model.main(daily)
-    # sueno=f"Weekly sleep quality: {calidad[0]}"
-    # MO=f"Bone mass: {week[0]} Kg"
-    # MM=f"Muscle mass: {week[1]} Kg"
-    # FAT=f"Fat: {week[2]} Kg"
-    # MASS=f"Mass: {week[3]} Kg"
-    # data=f"{sueno}%\n{MO}\n{MM}\n{FAT}\n{MASS}"
+    calidad =load_model.main(daily)
+    sueno=f"Weekly sleep quality: {calidad[0]}"
+    MO=f"Bone mass: {week[0]} Kg"
+    MM=f"Muscle mass: {week[1]} Kg"
+    FAT=f"Fat: {week[2]} Kg"
+    MASS=f"Mass: {week[3]} Kg"
+    data=f"{sueno}%\n{MO}\n{MM}\n{FAT}\n{MASS}"
     return data
