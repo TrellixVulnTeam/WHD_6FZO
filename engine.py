@@ -38,13 +38,15 @@ class databse(object):
         self.connection.commit()
 
     def data_all(self):
-        self.cursor.execute(f"SELECT ID FROM users WHERE name= '%s' "%self.data[-1])
+        print(self.data[0])
+        self.cursor.execute(f"SELECT ID FROM users WHERE name= '%s'" %self.data[0])
         idx=None
         for idx in self.cursor.fetchone():
             if idx==None:
                 pass
             else:
                 idx=idx
+                print(idx)
                 self.cursor.execute(f"SELECT FC,FR FROM data_daily_{idx} WHERE  SO=0")
                 daily=self.cursor.fetchall()
                 self.cursor.execute(f"SELECT MO ,MM,FAT,MASS FROM data_week_{idx} LAST_VALUE")
@@ -65,7 +67,6 @@ def datos(nombre,fdn,sexo,peso,altura):
     crear.create()
 
 def daily(data):
-    print("engine")
     for lista in data:
         insertar=databse(lista)
         insertar.insert_daily()
@@ -87,5 +88,5 @@ def data(nombre):
     MM=f"Muscle mass: {week[1]} Kg"
     FAT=f"Fat: {week[2]} Kg"
     MASS=f"Mass: {week[3]} Kg"
-    data=f"{sueno}%\n\n{MO}\n\n{MM}\n\n{FAT}\n\n{MASS}"
+    data=f"{sueno}%\n{MO}\n{MM}\n{FAT}\n{MASS}"
     return data

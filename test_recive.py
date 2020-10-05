@@ -10,15 +10,15 @@ x=0
 xy=0
 data=[]
 
-def mani():
-    global x
-    while True:
-        sample, timestamp = inlet.pull_sample()
-        print(sample,timestamp)
-        x=x+1
-        data.append(sample)
-        if x == 336:
-            t = Thread(target=daily(data))
-            t.start()
-            t.join()
-            exit(0)
+while True:
+    sample, timestamp = inlet.pull_sample()
+    print(sample,timestamp)
+    x=x+1
+    print(x)
+    data.append(sample)
+    if x == 25:
+        exit(0)
+    else:
+        t= Thread(target=daily(data))
+        t.start()
+        t.join()

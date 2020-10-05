@@ -14,7 +14,10 @@ print("enviando data")
 def main():
     x=0
     name= "JESUS ALAN HERNANDEZ GALVAN"
-    os.remove(os.path.join(data_dir,"array.txt"))
+    try:
+        os.remove(os.path.join(data_dir,"array.txt"))
+    except:
+        pass
     xy=0
     while True:
         
