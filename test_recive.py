@@ -16,7 +16,7 @@ while True:
     x=x+1
     print(x)
     data.append(sample)
-    if x == 25:
+    if x == 100:
         exit(0)
     else:
         t= Thread(target=daily(data))

@@ -106,14 +106,16 @@ class monitoreo(Screen):
         self.nombre.text=''
         self.monito.text=''
     def my_data(self):
-        try:
+        if len(self.nombre.text)>5:
             nombre=self.nombre.text.upper()
             data = engine.data(nombre)
-            try:
-                self.monito.text=data
-            except:
-                self.monito.text="Data Error"
-        except:
+            # if data:
+            #     self.monito.text=data
+            # except:
+            #     self.parent.current='inicio'
+            #     self.nombre.text=''
+            #     self.monito.text=''
+        else:
             self.parent.current='inicio'
             self.nombre.text=''
             self.monito.text=''

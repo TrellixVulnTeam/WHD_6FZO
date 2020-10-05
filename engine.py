@@ -38,7 +38,7 @@ class databse(object):
         self.connection.commit()
 
     def data_all(self):
-        print(self.data[0])
+        print(self.data)
         self.cursor.execute(f"SELECT ID FROM users WHERE name= '%s'" %self.data[0])
         idx=None
         for idx in self.cursor.fetchone():
@@ -46,12 +46,11 @@ class databse(object):
                 pass
             else:
                 idx=idx
-                print(idx)
                 self.cursor.execute(f"SELECT FC,FR FROM data_daily_{idx} WHERE  SO=0")
                 daily=self.cursor.fetchall()
                 self.cursor.execute(f"SELECT MO ,MM,FAT,MASS FROM data_week_{idx} LAST_VALUE")
                 week=self.cursor.fetchone()
-        return daily,week
+                return daily,week
 
 if path.exists(path.join(userpath,"Database.sqlite")):
     pass
@@ -80,13 +79,15 @@ def week(data):
     insertar.insert_week()
 
 def data(nombre):
-    info=databse([nombre])
-    daily,week= info.data_all()
-    calidad =load_model.main(daily)
-    sueno=f"Weekly sleep quality: {calidad[0]}"
-    MO=f"Bone mass: {week[0]} Kg"
-    MM=f"Muscle mass: {week[1]} Kg"
-    FAT=f"Fat: {week[2]} Kg"
-    MASS=f"Mass: {week[3]} Kg"
-    data=f"{sueno}%\n{MO}\n{MM}\n{FAT}\n{MASS}"
+    datai=[nombre,0]
+    data=databse(datai)
+    daily,week= data.data_all()
+    print(daily,week)
+    # calidad =load_model.main(daily)
+    # sueno=f"Weekly sleep quality: {calidad[0]}"
+    # MO=f"Bone mass: {week[0]} Kg"
+    # MM=f"Muscle mass: {week[1]} Kg"
+    # FAT=f"Fat: {week[2]} Kg"
+    # MASS=f"Mass: {week[3]} Kg"
+    # data=f"{sueno}%\n{MO}\n{MM}\n{FAT}\n{MASS}"
     return data
