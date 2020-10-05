@@ -24,10 +24,9 @@ class registro(Screen):
         altura = self.altura.text
         sexo = self.sexo.text.upper()
         peso = self.peso.text
-        if fecha!=' ' or nombre!=' ' or altura!=' ' or sexo!=' ' or peso!=' ':
+        if (self.nombre.text!=' ' or self.nombre.text!=' ' or self.altura.text!=' ' or self.sexo.text!=' ' or self.peso.text!=' ' or fecha=="--"):
 
             engine.datos(nombre,fecha,sexo,peso,altura)
-
             self.parent.current='inicio'
             self.mes.text=''
             self.dia.text=''
@@ -36,6 +35,7 @@ class registro(Screen):
             self.sexo.text=''
             self.altura.text=''
             self.peso.text=''
+
         else:
             self.parent.current='inicio'
             self.mes.text=''
@@ -53,8 +53,7 @@ class update(Screen):
         wrist=self.wrist.text
         nombre=self.nombre.text.upper()
         knee=self.knee.text
-        if masa!='' or wrist!='' or nombre!='' or knee!='':
-            
+        if masa!=' ' or wrist!=' ' or nombre!=' ' or knee!=' ':
             info=engine.get_data([nombre])
             fdn=info[1].split("-")
             if info[2]=="M":
@@ -107,14 +106,14 @@ class monitoreo(Screen):
         self.nombre.text=''
         self.monito.text=''
     def my_data(self):
-        if self.nombre.text!=" " or self.nombre.text!="" :
+        try:
             nombre=self.nombre.text.upper()
             data = engine.data(nombre)
             try:
                 self.monito.text=data
             except:
                 self.monito.text="Data Error"
-        else:
+        except:
             self.parent.current='inicio'
             self.nombre.text=''
             self.monito.text=''
